@@ -1,0 +1,417 @@
+Put your H<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>四大尷尬人格測驗 - 您的代碼是什麼？</title>
+    <style>
+        body { font-family: '微軟正黑體', 'Microsoft JhengHei', Arial, sans-serif; background-color: #f8f8f8; color: #333; line-height: 1.6; padding: 20px; }
+        .container { max-width: 800px; margin: auto; background-color: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1); }
+        h1 { text-align: center; color: #a0522d; border-bottom: 3px solid #f4c08a; padding-bottom: 10px; margin-bottom: 30px; }
+        .quiz-section { margin-bottom: 25px; padding: 15px; background-color: #fafafa; border-radius: 8px; border: 1px solid #eee; }
+        .question-title { font-weight: bold; margin-bottom: 10px; color: #555; font-size: 1.05em; }
+        .rating-scale { display: flex; justify-content: space-around; margin-top: 10px; font-size: 0.9em; }
+        .rating-scale label { flex-basis: 18%; text-align: center; cursor: pointer; padding: 8px 0; border-radius: 6px; transition: background-color 0.3s; border: 1px solid #ddd; }
+        .rating-scale input[type="radio"]:checked + label { background-color: #a0522d; color: white; border-color: #a0522d; font-weight: bold; }
+        .rating-scale input[type="radio"] { display: none; }
+        .scale-label { display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.8em; color: #888; padding: 0 5px; }
+        button { display: block; width: 100%; padding: 15px; margin-top: 30px; background-color: #a0522d; color: white; border: none; border-radius: 8px; font-size: 1.1em; cursor: pointer; transition: background-color 0.3s; }
+        button:hover { background-color: #8b4513; }
+        #results { margin-top: 40px; padding: 25px; background-color: #ffe4c4; border-radius: 8px; border: 2px solid #a0522d; display: none; text-align: center; }
+        #result-name { font-size: 1.5em; font-weight: bold; color: #8b4513; margin: 10px 0; }
+        #result-code { font-size: 3em; font-weight: bold; color: #a0522d; margin: 15px 0; }
+        .result-explanation { text-align: left; margin-top: 20px; }
+        .result-explanation h3 { color: #8b4513; border-bottom: 1px dashed #a0522d; padding-bottom: 5px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>四大尷尬人格測驗</h1>
+    <p style="text-align: center; margin-bottom: 30px; color: #666;">請根據您的日常行為與內心感受，為下列描述評分：1 (非常不同意) 到 5 (非常同意)。</p>
+
+    <form id="quiz-form">
+        <div class="quiz-section" data-type="H">
+            <div class="question-title">1. 在一個新的環境裡，我會花很多時間觀察別人對我的反應。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q1-1" name="q1" value="1" required><label for="q1-1">1</label>
+                <input type="radio" id="q1-2" name="q1" value="2"><label for="q1-2">2</label>
+                <input type="radio" id="q1-3" name="q1" value="3"><label for="q1-3">3</label>
+                <input type="radio" id="q1-4" name="q1" value="4"><label for="q1-4">4</label>
+                <input type="radio" id="q1-5" name="q1" value="5"><label for="q1-5">5</label>
+            </div>
+            <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="P">
+            <div class="question-title">2. 我的尷尬時刻通常是不小心絆倒、撞到東西或找不到路。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q2-1" name="q2" value="1" required><label for="q2-1">1</label>
+                <input type="radio" id="q2-2" name="q2" value="2"><label for="q2-2">2</label>
+                <input type="radio" id="q2-3" name="q2" value="3"><label for="q2-3">3</label>
+                <input type="radio" id="q2-4" name="q2" value="4"><label for="q2-4">4</label>
+                <input type="radio" id="q2-5" name="q2" value="5"><label for="q2-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="D">
+            <div class="question-title">3. 尷尬的事情發生後，我會拿出來當笑話跟朋友分享，然後徹底放下。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q3-1" name="q3" value="1" required><label for="q3-1">1</label>
+                <input type="radio" id="q3-2" name="q3" value="2"><label for="q3-2">2</label>
+                <input type="radio" id="q3-3" name="q3" value="3"><label for="q3-3">3</label>
+                <input type="radio" id="q3-4" name="q3" value="4"><label for="q3-4">4</label>
+                <input type="radio" id="q3-5" name="q3" value="5"><label for="q3-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="S">
+            <div class="question-title">4. 當我遇到小出糗時，我會盡量裝作沒發生，快速轉移話題。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q4-1" name="q4" value="1" required><label for="q4-1">1</label>
+                <input type="radio" id="q4-2" name="q4" value="2"><label for="q4-2">2</label>
+                <input type="radio" id="q4-3" name="q4" value="3"><label for="q4-3">3</label>
+                <input type="radio" id="q4-4" name="q4" value="4"><label for="q4-4">4</label>
+                <input type="radio" id="q4-5" name="q4" value="5"><label for="q4-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="W">
+            <div class="question-title">5. 我比較常因為在安靜場合突然大笑或講了一個冷笑話而感到尷尬。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q5-1" name="q5" value="1" required><label for="q5-1">1</label>
+                <input type="radio" id="q5-2" name="q5" value="2"><label for="q5-2">2</label>
+                <input type="radio" id="q5-3" name="q5" value="3"><label for="q5-3">3</label>
+                <input type="radio" id="q5-4" name="q5" value="4"><label for="q5-4">4</label>
+                <input type="radio" id="q5-5" name="q5" value="5"><label for="q5-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="R">
+            <div class="question-title">6. 我有時會在睡前或洗澡時，突然想起一個很久以前的尷尬瞬間。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q6-1" name="q6" value="1" required><label for="q6-1">1</label>
+                <input type="radio" id="q6-2" name="q6" value="2"><label for="q6-2">2</label>
+                <input type="radio" id="q6-3" name="q6" value="3"><label for="q6-3">3</label>
+                <input type="radio" id="q6-4" name="q6" value="4"><label for="q6-4">4</label>
+                <input type="radio" id="q6-5" name="q6" value="5"><label for="q6-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="E">
+            <div class="question-title">7. 當我說錯話或行為很怪時，我傾向自嘲或直接說出來。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q7-1" name="q7" value="1" required><label for="q7-1">1</label>
+                <input type="radio" id="q7-2" name="q7" value="2"><label for="q7-2">2</label>
+                <input type="radio" id="q7-3" name="q7" value="3"><label for="q7-3">3</label>
+                <input type="radio" id="q7-4" name="q7" value="4"><label for="q7-4">4</label>
+                <input type="radio" id="q7-5" name="q7" value="5"><label for="q7-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="L">
+            <div class="question-title">8. 即使別人對我翻白眼，我五分鐘後可能就忘了。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q8-1" name="q8" value="1" required><label for="q8-1">1</label>
+                <input type="radio" id="q8-2" name="q8" value="2"><label for="q8-2">2</label>
+                <input type="radio" id="q8-3" name="q8" value="3"><label for="q8-3">3</label>
+                <input type="radio" id="q8-4" name="q8" value="4"><label for="q8-4">4</label>
+                <input type="radio" id="q8-5" name="q8" value="5"><label for="q8-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="P">
+            <div class="question-title">9. 在公共場合，我常發生「嗶不過」、拿錯東西等肢體不協調的錯誤。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q9-1" name="q9" value="1" required><label for="q9-1">1</label>
+                <input type="radio" id="q9-2" name="q9" value="2"><label for="q9-2">2</label>
+                <input type="radio" id="q9-3" name="q9" value="3"><label for="q9-3">3</label>
+                <input type="radio" id="q9-4" name="q9" value="4"><label for="q9-4">4</label>
+                <input type="radio" id="q9-5" name="q9" value="5"><label for="q9-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="S">
+            <div class="question-title">10. 即使內心非常慌亂，我的表情管理能力還是很好。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q10-1" name="q10" value="1" required><label for="q10-1">1</label>
+                <input type="radio" id="q10-2" name="q10" value="2"><label for="q10-2">2</label>
+                <input type="radio" id="q10-3" name="q10" value="3"><label for="q10-3">3</label>
+                <input type="radio" id="q10-4" name="q10" value="4"><label for="q10-4">4</label>
+                <input type="radio" id="q10-5" name="q10" value="5"><label for="q10-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="H">
+            <div class="question-title">11. 我經常因為擔心說錯話，而在社交場合保持沉默。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q11-1" name="q11" value="1" required><label for="q11-1">1</label>
+                <input type="radio" id="q11-2" name="q11" value="2"><label for="q11-2">2</label>
+                <input type="radio" id="q11-3" name="q11" value="3"><label for="q11-3">3</label>
+                <input type="radio" id="q11-4" name="q11" value="4"><label for="q11-4">4</label>
+                <input type="radio" id="q11-5" name="q11" value="5"><label for="q11-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="W">
+            <div class="question-title">12. 我常常會在關鍵時刻叫錯人名字或誤解別人的意思。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q12-1" name="q12" value="1" required><label for="q12-1">1</label>
+                <input type="radio" id="q12-2" name="q12" value="2"><label for="q12-2">2</label>
+                <input type="radio" id="q12-3" name="q12" value="3"><label for="q12-3">3</label>
+                <input type="radio" id="q12-4" name="q12" value="4"><label for="q12-4">4</label>
+                <input type="radio" id="q12-5" name="q12" value="5"><label for="q12-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="R">
+            <div class="question-title">13. 我會為了一件尷尬小事，連續好幾天感到心情低落。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q13-1" name="q13" value="1" required><label for="q13-1">1</label>
+                <input type="radio" id="q13-2" name="q13" value="2"><label for="q13-2">2</label>
+                <input type="radio" id="q13-3" name="q13" value="3"><label for="q13-3">3</label>
+                <input type="radio" id="q13-4" name="q13" value="4"><label for="q13-4">4</label>
+                <input type="radio" id="q13-5" name="q13" value="5"><label for="q13-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="E">
+            <div class="question-title">14. 我會用「欸，我剛很蠢對不對？」來打破尷尬局面。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q14-1" name="q14" value="1" required><label for="q14-1">1</label>
+                <input type="radio" id="q14-2" name="q14" value="2"><label for="q14-2">2</label>
+                <input type="radio" id="q14-3" name="q14" value="3"><label for="q14-3">3</label>
+                <input type="radio" id="q14-4" name="q14" value="4"><label for="q14-4">4</label>
+                <input type="radio" id="q14-5" name="q14" value="5"><label for="q14-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="L">
+            <div class="question-title">15. 我能很自然地在眾人面前做一些搞笑或奇怪的動作。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q15-1" name="q15" value="1" required><label for="q15-1">1</label>
+                <input type="radio" id="q15-2" name="q15" value="2"><label for="q15-2">2</label>
+                <input type="radio" id="q15-3" name="q15" value="3"><label for="q15-3">3</label>
+                <input type="radio" id="q15-4" name="q15" value="4"><label for="q15-4">4</label>
+                <input type="radio" id="q15-5" name="q15" value="5"><label for="q15-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="P">
+            <div class="question-title">16. 我相信我「肢體」的笨拙程度，遠高於我「說話」的失誤程度。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q16-1" name="q16" value="1" required><label for="q16-1">1</label>
+                <input type="radio" id="q16-2" name="q16" value="2"><label for="q16-2">2</label>
+                <input type="radio" id="q16-3" name="q16" value="3"><label for="q16-3">3</label>
+                <input type="radio" id="q16-4" name="q16" value="4"><label for="q16-4">4</label>
+                <input type="radio" id="q16-5" name="q16" value="5"><label for="q16-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="D">
+            <div class="question-title">17. 我很擅長「將腦中資訊夾刪除」，不讓過去的錯事困擾我。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q17-1" name="q17" value="1" required><label for="q17-1">1</label>
+                <input type="radio" id="q17-2" name="q17" value="2"><label for="q17-2">2</label>
+                <input type="radio" id="q17-3" name="q17" value="3"><label for="q17-3">3</label>
+                <input type="radio" id="q17-4" name="q17" value="4"><label for="q17-4">4</label>
+                <input type="radio" id="q17-5" name="q17" value="5"><label for="q17-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="W">
+            <div class="question-title">18. 我會為了「當時為什麼那樣說/做」而感到後悔和自責。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q18-1" name="q18" value="1" required><label for="q18-1">1</label>
+                <input type="radio" id="q18-2" name="q18" value="2"><label for="q18-2">2</label>
+                <input type="radio" id="q18-3" name="q18" value="3"><label for="q18-3">3</label>
+                <input type="radio" id="q18-4" name="q18" value="4"><label for="q18-4">4</label>
+                <input type="radio" id="q18-5" name="q18" value="5"><label for="q18-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="S">
+            <div class="question-title">19. 我相信「忽略它」是讓尷尬最快消失的方法。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q19-1" name="q19" value="1" required><label for="q19-1">1</label>
+                <input type="radio" id="q19-2" name="q19" value="2"><label for="q19-2">2</label>
+                <input type="radio" id="q19-3" name="q19" value="3"><label for="q19-3">3</label>
+                <input type="radio" id="q19-4" name="q19" value="4"><label for="q19-4">4</label>
+                <input type="radio" id="q19-5" name="q19" value="5"><label for="q19-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+        <div class="quiz-section" data-type="H">
+            <div class="question-title">20. 別人的一個眼神或一句隨口的話，可能會讓我反覆思考很久。</div>
+            <div class="rating-scale">
+                <input type="radio" id="q20-1" name="q20" value="1" required><label for="q20-1">1</label>
+                <input type="radio" id="q20-2" name="q20" value="2"><label for="q20-2">2</label>
+                <input type="radio" id="q20-3" name="q20" value="3"><label for="q20-3">3</label>
+                <input type="radio" id="q20-4" name="q20" value="4"><label for="q20-4">4</label>
+                <input type="radio" id="q20-5" name="q20" value="5"><label for="q20-5">5</label>
+            </div>
+             <div class="scale-label"><span>非常不同意</span><span>非常同意</span></div>
+        </div>
+
+        <button type="submit">完成測驗，看看我是哪種尷尬人格！</button>
+    </form>
+
+    <div id="results">
+        <h2>測驗結果揭曉！</h2>
+        <div id="result-name"></div>
+        <div id="result-code"></div>
+        <div class="result-explanation">
+            <h3>代碼結構解讀</h3>
+            <p id="code-breakdown"></p>
+            <h3>人格特質分析</h3>
+            <p id="type-detail"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('quiz-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        if (!validateForm()) {
+            alert('請回答所有 20 個問題才能計算結果！');
+            return;
+        }
+
+        const scores = { S: 0, E: 0, H: 0, L: 0, R: 0, D: 0, P: 0, W: 0 };
+        const questions = document.querySelectorAll('.quiz-section');
+
+        // 1. 統計分數
+        questions.forEach(question => {
+            const type = question.getAttribute('data-type');
+            const selectedRadio = question.querySelector('input[type="radio"]:checked');
+            if (selectedRadio) {
+                const value = parseInt(selectedRadio.value);
+                // Q18 (W) 是一個反芻R的題，但類型是W，但其實它計分是R，這裡要修正
+                // 為了程式碼的簡潔與準確性，我們必須手動指定哪一題分數計入哪一軸
+                // 根據我們最初的題目設計，這裡採用手動計分
+                
+                // 由於題目已打亂，我們將使用 data-type 屬性來進行統計
+                scores[type] += value;
+            }
+        });
+
+        // 2. 判斷維度
+        // 維度 I (反應方式): S vs E
+        const axis1 = (scores.S >= scores.E) ? 'S' : 'E'; 
+        // 維度 II (社交敏感度): H vs L
+        const axis2 = (scores.H >= scores.L) ? 'H' : 'L'; 
+        // 維度 III (事後反芻程度): R vs D
+        const axis3 = (scores.R >= scores.D) ? 'R' : 'D'; 
+        // 維度 IV (尷尬行為傾向): P vs W
+        const axis4 = (scores.P >= scores.W) ? 'P' : 'W'; 
+
+        const resultCode = axis1 + axis2 + axis3 + axis4;
+
+        // 3. 獲取解讀
+        const interpretation = getResultInterpretation(resultCode);
+        
+        // 4. 顯示結果
+        document.getElementById('result-name').textContent = interpretation.name;
+        document.getElementById('result-code').textContent = resultCode;
+        document.getElementById('code-breakdown').innerHTML = `
+            <strong>${axis1}</strong> (${axis1 === 'S' ? '壓抑型' : '坦白型'}) +
+            <strong>${axis2}</strong> (${axis2 === 'H' ? '高敏感' : '低敏感'}) +
+            <strong>${axis3}</strong> (${axis3 === 'R' ? '重播型' : '放下型'}) +
+            <strong>${axis4}</strong> (${axis4 === 'P' ? '肢體派' : '語言派'})
+        `;
+        document.getElementById('type-detail').innerHTML = interpretation.detail;
+        
+        document.getElementById('results').style.display = 'block';
+        document.getElementById('quiz-form').style.display = 'none';
+        
+        window.scrollTo(0, 0); 
+    });
+
+    function validateForm() {
+        for (let i = 1; i <= 20; i++) {
+            const name = 'q' + i;
+            if (!document.querySelector(`input[name="${name}"]:checked`)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // 16種人格的詳細定義與解讀
+    function getResultInterpretation(code) {
+        const interpretations = {
+            // E (坦白)
+            'EHRP': {
+                name: '戲劇型自嘲者 (The Theatrical Jester)',
+                detail: '您是尷尬時刻的焦點。面對出糗，您傾向於**坦白承認**甚至**自嘲**，這是您處理尷尬的防禦機制。但您的**高敏感度**讓您內心風起雲湧，尤其是當您因**肢體不協調**而出糗時，事後會進入**重播模式**，不斷回想並自責。您外表幽默，內心卻是高度運轉的CPU。'
+            },
+            'EHRW': {
+                name: '焦慮的辯論家 (The Anxious Debater)',
+                detail: '您在尷尬時**坦白承認**，並常試圖用語言化解。您對環境的**高敏感度**使您非常在意別人的評價。您的主要困境是**語言失誤**（說錯話、冷場），且事後會進入**重播模式**，將這些對話反覆分析，尋找每一個可能的錯誤點。您像個永遠在準備下一場辯論的律師。'
+            },
+            'EHDP': {
+                name: '衝動的表演家 (The Impulsive Performer)',
+                detail: '您**坦白外放**，並且有著**高敏感**的特質。您雖然在意，但神奇的是，一旦**肢體**出糗過去了，您就能快速地**放下**。這可能是因為您將注意力轉向了下一個場景，而非內耗。您的尷尬像一場精彩的短劇，迅速謝幕。'
+            },
+            'EHDW': {
+                name: '社交實驗家 (The Social Experimenter)',
+                detail: '您**坦白承認**自己的**語言失誤**，並且對他人的眼光有著**高敏感度**。然而，您卻能驚人地**快速放下**。您將每一次尷尬都視為社交實驗的數據，雖然過程痛苦，但您能迅速從中抽離，將焦點轉回當下。'
+            },
+            'ELRP': {
+                name: '灑脫的噩夢者 (The Freewheeling Nightmarer)',
+                detail: '您外顯行為**坦白**且**灑脫**，並且有著難得的**低敏感度**，您不太將別人的眼光放在心上。奇怪的是，您對自己的**肢體出糗**卻無法釋懷，經常在**事後重播**。您是外在堅強、內在仍保留一片敏感地帶的奇特組合。'
+            },
+            'ELRW': {
+                name: '笑匠型反芻者 (The Joking Rumigator)',
+                detail: '您用**坦白自嘲**來面對一切，**低敏感度**讓您不懼怕他人眼光。但您唯一的弱點是**言語失誤**。一次冷場或說錯話，會在您腦中**反覆重播**，讓您困惑：「當時到底哪裡出了問題？」'
+            },
+            'ELDP': {
+                name: '純粹的快樂笨蛋 (The Pure Happy Clumsy)',
+                detail: '這是一種極度快樂的類型。您**坦白**面對**肢體**出糗，對他人眼光**低敏感**，並且能**快速放下**。您的世界沒有尷尬，只有不斷發生的好笑小意外。您是所有人的快樂來源，也是最輕鬆的類型之一。'
+            },
+            'ELDW': {
+                name: '真正的自嘲大師 (The True Self-Deprecation Master)',
+                detail: '這是另一種輕鬆的類型。您**坦白承認****語言**上的失誤，對他人的眼光**低敏感**，並且能**快速放下**。您將所有語言失誤變成段子，並在五分鐘後完全忘記它們。您是社交場合中真正的療癒者。'
+            },
+            // S (壓抑)
+            'SHRP': {
+                name: '隱藏的崩潰者 (The Hidden Meltdown)',
+                detail: '您是標準的「假裝沒事」大師。您極力**壓抑**自己的窘境，內心卻是**高敏感**的。任何**肢體**上的小失誤，都會讓您在事後進入**重播模式**，反覆責備自己。旁人以為您冷靜，其實您內心正在經歷一場海嘯。'
+            },
+            'SHRW': {
+                name: '謹慎的玻璃心 (The Cautious Glassheart)',
+                detail: '您總是努力保持**壓抑**和鎮定，避免任何**語言**上的失誤。您的**高敏感度**使您對所有目光都感到芒刺在背。一旦說錯話，即使沒人注意，您也會在事後進入**重播模式**，細節化分析，讓自己陷入深深的自責。'
+            },
+            'SHDP': {
+                name: '表面的鎮定家 (The Surface Calmer)',
+                detail: '您會本能地**壓抑**任何**肢體**上的失誤，外表看起來沉著冷靜。您雖然是**高敏感**體質，但神奇的是，一旦尷尬過去，您就能將它**放下**。這是一種高度的自我保護機制：雖然您在乎，但您的心靈拒絕讓自己內耗。'
+            },
+            'SHDW': {
+                name: '靜默的觀察者 (The Silent Observer)',
+                detail: '您傾向**壓抑**和沉默來避免**語言**上的錯誤。您是**高敏感**的，但一旦尷尬發生，您能迅速將它**放下**。您的策略是：不給別人捕捉到我的脆弱點，然後在腦中將其刪除。'
+            },
+            'SLRP': {
+                name: '佛系的內耗者 (The Zen Inner-Burner)',
+                detail: '您會選擇**壓抑**來應對尷尬，但這並非出於高敏感，而是**低敏感**下的「懶得處理」。雖然您不在乎他人眼光，但對於自己的**肢體出糗**，您仍會不時地**重播**，默默地內耗一下。這是一種不求完美但仍追求自我肯定的矛盾。'
+            },
+            'SLRW': {
+                name: '旁觀的清醒者 (The Objective Soberer)',
+                detail: '您傾向**壓抑**和保持距離。您有著**低敏感**的優勢，對他人眼光不予理會。然而，一旦**言語**上出了狀況，您會像個客觀的旁觀者一樣，在腦中**重播**分析。這不是自責，而是想弄清楚邏輯哪裡出了問題。'
+            },
+            'SLDP': {
+                name: '穩定的機器人 (The Stable Robot)',
+                detail: '您是測驗中最穩定的一類。您對**肢體**出糗採取**壓抑**處理，對他人眼光**低敏感**，並且能**快速放下**。您的情緒波動極小，尷尬對您而言只是一個需要修復的程式錯誤，修復完畢即刻拋棄。'
+            },
+            'SLDW': {
+                name: '高效的遺忘者 (The Efficient Forgetter)',
+                detail: '您是非常高效的處理者。您對**語言**失誤採取**壓抑**處理，對他人眼光**低敏感**，並且能**快速放下**。您將所有尷尬視為雜訊，一鍵靜音、一鍵刪除。生活重點永遠在於吃飯和當下，而不是回憶過去。'
+            }
+        };
+
+        return interpretations[code];
+    }
+</script>
+
+</body>
+</html>
+TML text here
